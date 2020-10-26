@@ -19,6 +19,11 @@ h1, p{
     padding: 0;
 }
 
+button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
 .wrapper{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -27,9 +32,43 @@ h1, p{
 }
 
 .box{
-    
     position: relative;
+    cursor: pointer;
+    box-shadow: 0 3px 8px -4px rgba(0,0,0,.15);
 }
+
+.box:hover .text{
+    transform: scale(1);
+    opacity: 1;
+} 
+
+.text{
+    background: hsla(0,0%,100%,.9);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: scale(0);
+    opacity: 0;
+    transition: all ease-in-out 400ms;
+    font-size: 19px;
+}
+
+.cost{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #2fdab8;
+    padding: 13px 16px;
+    font-size: 19px;
+    color: white;
+}
+
 
 .subject, .description{
     text-align: center;
@@ -86,23 +125,59 @@ h1, p{
     background-repeat: no-repeat;
 }
 
-.cost{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #2fdab8;
-    padding: 13px 16px;
-}
-
-.text{
-    background: hsla(0,0%,100%,.9);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
+#layer{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 100vh;
+    z-index: 3000;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    
+}
+
+#layer .form-wrapper input, #layer .form-wrapper button{
+    display: block;
+    width: 100%;
+    text-indent: 15px;
+    margin-bottom: 13px;
+    padding: 13px 0;
+}
+
+#layer .form-wrapper{
+    position: relative;
+    background: #f2f2f2;
+    width: 300px;
+    text-align: center;
+    padding: 16px;
+}
+
+#layer.active{
+    display: flex;
+}
+
+.exit{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 22px;
+}
+.info-text h1{
+    margin-bottom: 8px;
+}
+
+#layer .form-wrapper .info-text{
+    margin-bottom: 16px;
+}
+
+#layer .form-wrapper button{
+    background: black;
+    color: white;
+}
+
+@media(max-width: 960px){
+    .wrapper{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
